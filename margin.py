@@ -244,15 +244,6 @@ def extract_nb(weight_file):
         print("No match found")
     return nb
 
-def calculate_statistics(column):
-    Q1 = column.quantile(0.25)
-    Q2 = column.median()
-    Q3 = column.quantile(0.75)
-    IQR = Q3 - Q1
-    lower_fence = Q1 - 1.5 * IQR
-    upper_fence = Q3 + 1.5 * IQR
-    return [Q1, Q2, Q3, lower_fence, upper_fence]
-
 # h5 file
 evaluation_h5_path_1 = "h5_files_evaluation/evaluation_Sans_Compression.h5"
 
