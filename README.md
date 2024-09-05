@@ -24,9 +24,9 @@
 
 - The file ```training_results.csv``` is a directory of Bayar detectors for which we select precise hyperparameters and identifying them with a number.
 
-- Details about the computation of latent margins are available in ```latent_margins.md```
+- Details about the computation of latent margins are available in ```Experiments/details.md```
   
-- To be able to reproduce our results, you need classical python library (e.g. numpy, matplotlib and pandas). A playground notebook is available to let you reproduce our results using these libraries.
+- To be able to reproduce our results, you need classical python library (e.g. numpy, matplotlib and pandas). A playground notebook is available in the ```Experiments``` folder to let you reproduce our results using these libraries.
 
 
 ## Main references
