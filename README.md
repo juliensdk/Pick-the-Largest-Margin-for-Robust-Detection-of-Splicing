@@ -20,7 +20,7 @@
 
 ## Comments about the repo : 
 
-- The file ```Experiments/generation_20_pipelines``` is the code we used to generate our targets with 20 different pipelines.
+- The file ```Experiments/generation_20_pipelines.py``` is the code we used to generate our targets with 20 different pipelines.
 
 - The file ```training_results.csv``` is a directory of Bayar detectors for which we select precise hyperparameters and identifying them with a number.
 
