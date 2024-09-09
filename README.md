@@ -4,7 +4,7 @@
 
 ![](https://img.shields.io/badge/Official%20-Yes-1E8449.svg) ![](https://img.shields.io/badge/Topic%20-Digital_Image_Forensics-2E86C1.svg) 
 
-[![](https://img.shields.io/badge/Bibtex-0C0C0C?style=for-the-badge)](#CitingUs)   [![](https://img.shields.io/badge/Article-2E86C1?style=for-the-badge)]([https://hal.science/hal-04229257v1/](https://hal.science/hal-04688185)) 
+[![](https://img.shields.io/badge/Bibtex-0C0C0C?style=for-the-badge)](#CitingUs)   [![](https://img.shields.io/badge/Article-2E86C1?style=for-the-badge)](https://arxiv.org/pdf/2409.03318)
  
 ### Julien Simon de Kergunic, Rony Abecidan, Patrick Bas, Vincent Itier
 
