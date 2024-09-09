@@ -4,9 +4,8 @@ Since computing the exact distance of a point to the decision boundary in a deep
 
 For a latent sample $\boldsymbol{x}^l$, with $\boldsymbol{x}^0 = \boldsymbol{x}$ for the input layer, the approximate margin distance for $p=2$ from the representation $\boldsymbol{x}^l$ to the decision boundary between class pair $(i, j)$ is:
 
-$$
-d_{f,(i, j)}\left(\boldsymbol{x}^l\right) = \frac{f_i\left(\boldsymbol{x}^l\right) - f_j\left(\boldsymbol{x}^l\right)}{\left\|\nabla_{\boldsymbol{x}^l} f_i\left(\boldsymbol{x}^l\right) - \nabla_{\boldsymbol{x}^l} f_j\left(\boldsymbol{x}^l\right)\right\|_2}
-$$
+
+##  $$d_{f,(i, j)}\left(\boldsymbol{x}^l\right) = \frac{f_i\left(\boldsymbol{x}^l\right) - f_j\left(\boldsymbol{x}^l\right)}{\left\|\nabla_{\boldsymbol{x}^l} f_i\left(\boldsymbol{x}^l\right) - \nabla_{\boldsymbol{x}^l} f_j\left(\boldsymbol{x}^l\right)\right\|_2}$$
 
 where $f_i\left(\boldsymbol{x}^l\right)$ represents the logit for class $i$ given $\boldsymbol{x}^l$ as defined in the paper. The sign of this distance indicates whether the sample is on the "correct" (positive) or "wrong" (negative) side of the decision boundary. While this distance can be computed for all $(i, j)$ pairs, the authors assume $i$ corresponds to the ground truth label and $j$ is either the second-highest or highest class in case of misclassification. 
 
