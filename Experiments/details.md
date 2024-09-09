@@ -1,84 +1,19 @@
-# Official repository for the paper :
+Given the page limitations, it was challenging to provide a detailed explanation of the computation of our margin metric $\mathcal{M}_{\alpha}$. We actually followed the methodology of reference [19] to derive it. Below is a summary of our approach:
 
-## "Pick the Largest Margin for Robust Detection of Splicing (pre-print)"
+Since computing the exact distance of a point to the decision boundary in a deep network is computationally infeasible, the authors of [19] are approximating this distance using a first-order Taylor approximation, i.e., 
 
-![](https://img.shields.io/badge/Official%20-Yes-1E8449.svg) ![](https://img.shields.io/badge/Topic%20-Digital_Image_Forensics-2E86C1.svg) 
+For a latent sample $\boldsymbol{x}^l$, with $\boldsymbol{x}^0 = \boldsymbol{x}$ for the input layer, the approximate margin distance for $p=2$ from the representation $\boldsymbol{x}^l$ to the decision boundary between class pair $(i, j)$ is:
 
-[![](https://img.shields.io/badge/Bibtex-0C0C0C?style=for-the-badge)](#CitingUs)   [![](https://img.shields.io/badge/Article-2E86C1?style=for-the-badge)]([https://hal.science/hal-04229257v1/](https://hal.science/hal-04688185)) 
- 
-### Julien Simon de Kergunic, Rony Abecidan, Patrick Bas, Vincent Itier
+$$
+d_{f,(i, j)}\left(\boldsymbol{x}^l\right) = \frac{f_i\left(\boldsymbol{x}^l\right) - f_j\left(\boldsymbol{x}^l\right)}{\left\|\nabla_{\boldsymbol{x}^l} f_i\left(\boldsymbol{x}^l\right) - \nabla_{\boldsymbol{x}^l} f_j\left(\boldsymbol{x}^l\right)\right\|_2}
+$$
 
+where $f_i\left(\boldsymbol{x}^l\right)$ represents the logit for class $i$ given $\boldsymbol{x}^l$ as defined in the paper. The sign of this distance indicates whether the sample is on the "correct" (positive) or "wrong" (negative) side of the decision boundary. While this distance can be computed for all $(i, j)$ pairs, the authors assume $i$ corresponds to the ground truth label and $j$ is either the second-highest or highest class in case of misclassification. 
 
-<br/>
+With this approximation, our training data $\boldsymbol{x}$ induces a distribution of margin distances (latent margins) at each layer $l$. These distributions can then be resumed through a vector of descriptive statistics $\mu$. For these statistics, we chose the five key statistics proposed by [19]: the first quartile, the median, the third quartile, and the upper and lower fences measuring variability outside the upper and lower quartiles. 
 
-*Abstract: Despite advancements in splicing detection, practitioners still struggle to fully leverage forensic tools from the literature due to a critical issue: deep learning-based detectors are extremely sensitive to their trained instances. Simple post-processing applied to evaluation images can easily decrease their performances, leading to a lack of confidence in splicing detectors for operational contexts. In this study, we show that a deep splicing detector behaves differently against unknown post-processes for different learned weights, even if it achieves similar performances on a test set from the same distribution as its training one. We connect this observation to the fact that different learnings create different latent spaces separating training samples differently. Our experiments reveal a strong correlation between the distributions of latent margins and the ability of the detector to generalize to post-processed images. We thus provide to the practitioner a way to build deep detectors that are more robust than others against post-processing operations, suggesting to train their architecture under different conditions and picking the one maximizing the latent space margin.*
+*N.B : We also experimented what happened with more extensive sets of statistics, and our results did not show significant improvements compared to the 5-statistics case.*
 
-<p align="center">
-  <img src="Assets/illustration.png" />
-</p>
+While our method is indeed largely inspired by the approach described in [19], it is important to clarify that we redefined its goal. Instead of focusing on **predicting the exact generalization gap using latent margins for image classification** our objective is rather to **use latent margins of training samples to derive a metric enabling to assess the robustness against post-processing in forensic applications**. This is a new point of view not explored in forensics that could benefit the forensic community greatly. 
 
-
-## Comments about the repo : 
-
-- The file ```pipelines.csv``` is a directory of pipelines disclosing their parameters and identifying them with a number.
-
-- The file ```training_results.csv``` is a directory of Bayar detectors for which we select precise hyperparameters and identifying them with a number.
-
-- Details about the computation of latent margins are available in ```latent_margins.md```
-  
-- To be able to reproduce our results, you need classical python library (e.g. numpy, matplotlib and pandas). A playground notebook is available to let you reproduce our results using these libraries.
-
-
-## Main references
-
-```BibTeX
-@misc{jiang2019predictinggeneralizationgapdeep,
-      title={Predicting the Generalization Gap in Deep Networks with Margin Distributions}, 
-      author={Yiding Jiang and Dilip Krishnan and Hossein Mobahi and Samy Bengio},
-      year={2019},
-      eprint={1810.00113},
-      archivePrefix={arXiv},
-      primaryClass={stat.ML},
-      url={https://arxiv.org/abs/1810.00113}, 
-}
-
-
-@inproceedings{10.1145/2909827.2930786,
-author = {Bayar, Belhassen and Stamm, Matthew C.},
-title = {A Deep Learning Approach to Universal Image Manipulation Detection Using a New Convolutional Layer},
-year = {2016},
-isbn = {9781450342902},
-publisher = {Association for Computing Machinery},
-address = {New York, NY, USA},
-url = {https://doi.org/10.1145/2909827.2930786},
-doi = {10.1145/2909827.2930786},
-booktitle = {Proceedings of the 4th ACM Workshop on Information Hiding and Multimedia Security},
-pages = {5–10},
-numpages = {6},
-keywords = {convolutional neural networks, image forensics, universal forgery detection},
-location = {Vigo, Galicia, Spain},
-series = {IH&MMSec '16}
-}
-
-```
-
----
-<a name="CitingUs"></a>
-## Citing our paper
-### If you wish to refer to our paper,  please use the following BibTeX entry
-```BibTeX
-
-@unpublished{simondekergunic:hal-04688185,
-  TITLE = {{Pick the Largest Margin for Robust Detection of Splicing}},
-  AUTHOR = {Simon de Kergunic, Julien and Abecidan, Rony and Bas, Patrick and Itier, Vincent},
-  URL = {https://hal.science/hal-04688185},
-  NOTE = {working paper or preprint},
-  YEAR = {2024},
-  MONTH = Sep,
-  KEYWORDS = {Signal Processing ; Image Processing ; Multimedia Forensics ; Digital Forensics ; Digital Image Forensics ; Machine Learning ; Deep Learning},
-  PDF = {https://hal.science/hal-04688185/file/2024_wifs.pdf},
-  HAL_ID = {hal-04688185},
-  HAL_VERSION = {v1},
-}
-
-```
+Please note that our initial choice to sum the statistics raised to a specific $\alpha$ was an intuitive approach that successfully demonstrated the link between margin and generalization gap. We however believe there are more effective ways to create margin metrics that can better capture the generalization ability of splicing detectors. This work is a first step in encouraging the search of such metrics.
