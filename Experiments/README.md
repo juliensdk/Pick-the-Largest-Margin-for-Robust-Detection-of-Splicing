@@ -1,3 +1,6 @@
+### Important Information: The results of our latent margin computations are available at [this link](https://drive.google.com/drive/folders/1q0Y0vEVPaqH23j5zIrv6jut3uH5PWnV4?usp=sharing). You need to download them and put them in a folder named  ```margins_data``` to reproduce our results in the playground notebook).
+
+
 Given the page limitations, it was challenging to provide a detailed explanation of the computation of our margin metric $\mathcal{M}_{\alpha}$. We actually followed the methodology of reference [19] to derive it. Below is a summary of our approach:
 
 Since computing the exact distance of a point to the decision boundary in a deep network is computationally infeasible, the authors of [19] are approximating this distance using a first-order Taylor approximation, i.e., 
@@ -17,4 +20,3 @@ While our method is indeed largely inspired by the approach described in [19], i
 
 Please note that our initial choice to sum the statistics raised to a specific $\alpha$ was an intuitive approach that successfully demonstrated the link between margin and generalization gap. We however believe there are more effective ways to create margin metrics that can better capture the generalization ability of splicing detectors. This work is a first step in encouraging the search of such metrics.
 
-**Important Information: The results of our latent margin computations are available at [this link](https://drive.google.com/drive/folders/1q0Y0vEVPaqH23j5zIrv6jut3uH5PWnV4?usp=sharing). You need to download them and put them in a folder named  ```margin_data``` to reproduce our results in the playground notebook).**
